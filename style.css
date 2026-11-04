@@ -32,7 +32,7 @@ body {
     padding: 20px;
 }
 
-.screen:active {
+.screen.active {
     display: flex;
 }
 
