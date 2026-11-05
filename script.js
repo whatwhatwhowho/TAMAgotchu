@@ -91,9 +91,9 @@ function startGameLoop() {
     setInterval(() => {
         if (!gameState.isAlive) return;
 
-        // Gradual stat decay over time
-        gameState.health = Math.max(0, gameState.health - 0.25);
-        gameState.love = Math.max(0, gameState.love - 0.25);
+        // decrease by 5% every 4 seconds
+        gameState.health = Math.max(0, gameState.health - 5);
+        gameState.love = Math.max(0, gameState.love - 5);
 
         if (gameState.health === 0 || gameState.love === 0) {
             gameState.isAlive = false;
@@ -102,7 +102,7 @@ function startGameLoop() {
 
         updateUI();
     }, 4000); // Tick every 4 seconds
-
+    
     // Update clock every second
     setInterval(updateClockAndState, 1000);
 }
