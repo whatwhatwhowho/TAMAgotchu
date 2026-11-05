@@ -5,6 +5,7 @@ const gameState = {
     isAlive: true
 };
 let isGameRunning = false;
+let isActionTriggered = false;
 
 // --- DOM ELEMENTS ---
 const screenLaunch = document.getElementById('screen-launch');
@@ -39,30 +40,6 @@ btnPlay.addEventListener('click', (e) => {
     startGameLoop();
 });
 
-// --- STAT DECAY GAME LOOP ---
-function startGameLoop() {
-    updateClockAndState();
-    
-    // Decay stats every 4 seconds
-    setInterval(() => {
-        if (!gameState.isAlive) return;
-
-        // decrease health and love by 5 every 4 seconds (change to 25 if you prefer a 16-second full drain)
-        gameState.health = Math.max(0, gameState.health - 5);
-        gameState.love = Math.max(0, gameState.love - 5);
-
-        if (gameState.health === 0 || gameState.love === 0) {
-            gameState.isAlive = false;
-            speechBubble.textContent = "eyoyoyy 😭";
-        }
-
-        updateUI();
-    }, 4000); 
-    
-    // Update clock every second (kept outside the decay interval so it only registers once)
-    setInterval(updateClockAndState, 1000);
-}
-
 // 2. Click HOW TO PLAY image button to open the instructions overlay
 btnHowToPlay.addEventListener('click', (e) => {
     e.preventDefault();
@@ -76,15 +53,41 @@ screenInstructions.addEventListener('click', (e) => {
     }
 });
 
+// --- STAT DECAY GAME LOOP ---
+function startGameLoop() {
+    updateUI();
+    updateClockAndState();
+    
+    // Decay stats every 4 seconds
+    setInterval(() => {
+        if (!gameState.isAlive) return;
+
+        // decrease health and love every 4 seconds
+        gameState.health = Math.max(0, gameState.health - 25);
+        gameState.love = Math.max(0, gameState.love - 25);
+
+        if (gameState.health === 0 || gameState.love === 0) {
+            gameState.isAlive = false;
+            speechBubble.textContent = "eyoyoyy 😭";
+            petSprite.src = "assets/character_sleep.png";
+        }
+
+        updateUI();
+    }, 4000); 
+    
+    // Update clock every second (kept outside the decay interval so it only registers once)
+    setInterval(updateClockAndState, 1000);
+}
+
 // --- CLOCK & TIME-BASED STATE LOGIC (Matches Device Local Time) ---
 function updateClockAndState() {
+    if (isActionTriggered) retuern;
     const now = new Date();
     
     // Format to local device time (12-hour or 24-hour based on user preference, or standard 24-hr here)
     const options = { hour: '2-digit', minute: '2-digit', hour12: false };
     const timeString = new Intl.DateTimeFormat([], options).format(now);
     
-    // If you want it to display "LOCAL" or just the time format instead of "WITA"
     liveClock.textContent = `${timeString}`;
 
     // Get local hour (0 - 23) based on the device's clock
@@ -93,7 +96,7 @@ function updateClockAndState() {
     // Dynamic Sprite & Speech Adjustments based on Device Time and Status
     if (!gameState.isAlive) {
         petSprite.src = "assets/character_sleep.png";
-        speechBubble.textContent = "Zzz... met bobow... 😴";
+        speechBubble.textContent = "eyoyoyyy 😭";
         return;
     }
 
