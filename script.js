@@ -91,9 +91,9 @@ function startGameLoop() {
     setInterval(() => {
         if (!gameState.isAlive) return;
 
-        // decrease by 5% every 4 seconds
-        gameState.health = Math.max(0, gameState.health - 5);
-        gameState.love = Math.max(0, gameState.love - 5);
+        // decrease every 4 seconds
+        gameState.health = Math.max(0, gameState.health - 25);
+        gameState.love = Math.max(0, gameState.love - 25);
 
         if (gameState.health === 0 || gameState.love === 0) {
             gameState.isAlive = false;
