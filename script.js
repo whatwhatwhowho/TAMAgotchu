@@ -28,15 +28,40 @@ const speechBubble = document.getElementById('speech-bubble');
 // 1. Click PLAY image button to jump straight to the Main Game Screen
 btnPlay.addEventListener('click', (e) => {
     e.preventDefault();
+    
+    // Guard check: only allow the game to start once
+    if (isGameRunning) return;
+    isGameRunning = true;
+
     screenLaunch.classList.remove('active');
     screenMain.classList.add('active');
-    startGameLoop();
     
-    if (!isGameRunning) {
-        isGameRunning = true;
-        startGameLoop();
-    }
+    startGameLoop();
 });
+
+// --- STAT DECAY GAME LOOP ---
+function startGameLoop() {
+    updateClockAndState();
+    
+    // Decay stats every 4 seconds
+    setInterval(() => {
+        if (!gameState.isAlive) return;
+
+        // decrease health and love by 5 every 4 seconds (change to 25 if you prefer a 16-second full drain)
+        gameState.health = Math.max(0, gameState.health - 5);
+        gameState.love = Math.max(0, gameState.love - 5);
+
+        if (gameState.health === 0 || gameState.love === 0) {
+            gameState.isAlive = false;
+            speechBubble.textContent = "eyoyoyy 😭";
+        }
+
+        updateUI();
+    }, 4000); 
+    
+    // Update clock every second (kept outside the decay interval so it only registers once)
+    setInterval(updateClockAndState, 1000);
+}
 
 // 2. Click HOW TO PLAY image button to open the instructions overlay
 btnHowToPlay.addEventListener('click', (e) => {
@@ -89,28 +114,6 @@ function updateClockAndState() {
         petSprite.src = "assets/character_idle.png";
         speechBubble.textContent = "Helow Jjul!💕";
     }
-}
-
-// --- STAT DECAY GAME LOOP ---
-function startGameLoop() {
-    updateClockAndState();
-    setInterval(() => {
-        if (!gameState.isAlive) return;
-
-        // decrease every 4 seconds
-        gameState.health = Math.max(0, gameState.health - 25);
-        gameState.love = Math.max(0, gameState.love - 25);
-
-        if (gameState.health === 0 || gameState.love === 0) {
-            gameState.isAlive = false;
-            speechBubble.textContent = "eyoyoyy 😭";
-        }
-
-        updateUI();
-    }, 4000); // Tick every 4 seconds
-    
-    // Update clock every second
-    setInterval(updateClockAndState, 1000);
 }
 
 // --- UI SYNC ---
