@@ -10,70 +10,72 @@
 </style>
 </head>
 <body>
-
-<!-- 1. ROOT / LAUNCH SCREEN -->
-<div id="screen-launch" class="screen active">
-    <div class="launch-content">
-        <a id="play" href="#screen-main"><img src="assets/play-btn.png" alt="TAMA Gotchu"></a>
-        <a id="how-to-play" href="#screen-instructions" class="pixel-btn htp"><img src="assets/how-to-play-btn.png" alt="How to Play"></a>
+<div class="game-container">
+   <!-- 1. ROOT / LAUNCH SCREEN -->
+    <div id="screen-launch" class="screen active">
+        <div class="launch-content">
+            <a id="play" href="#screen-main"><img src="assets/play-btn.png" alt="TAMA Gotchu"></a>
+            <a id="how-to-play" href="#screen-instructions" class="pixel-btn htp"><img src="assets/how-to-play-btn.png" alt="How to Play"></a>
+        </div>
     </div>
-</div>
-
-<div id="screen-instructions" class="overlay-backdrop">
-    <div class="instructions-overlay-box">
-        <img src="assets/how-to-play-overlay.png" alt="How to Play Instructions" class="instructions-img">
-    </div>
-</div>
-
-<!-- 3. MAIN GAME SCREEN -->
-<div id="screen-main" class="screen">
     
-    <!-- Top Status Frame -->
-    <div class="top-status-frame" style="background-image: url('assets/status bar.png');">
-        <div class="profile-info">
-            <span class="profile-name">TAMA Gotchu</span>
-        </div>
-        <div id="live-clock" class="live-clock">00:00</div>
-        
-        <!-- Health Bar -->
-        <div class="stat-group">
-            <img class="status-icon" src="assets/bread-icon.png"><span class="stat-label"></span>
-            <div class="pixel-bar-bg"><div id="health-bar-fill" class="pixel-bar-fill"></div></div>
-        </div>
-
-        <!-- Love Bar -->
-        <div class="stat-group">
-            <img src="assets/heart-icon.png" class="status-icon"><span class="stat-label"></span>
-            <div class="pixel-bar-bg"><div id="love-bar-fill" class="pixel-bar-fill" style="background-color: #ff6b81;"></div></div>
+    <div id="screen-instructions" class="overlay-backdrop">
+        <div class="instructions-overlay-box">
+            <img src="assets/how-to-play-overlay.png" alt="How to Play Instructions" class="instructions-img">
         </div>
     </div>
 
-    <!-- Center Stage (Character & Speech Bubble) -->
-    <div class="center-stage">
+    <!-- 2. MAIN GAME SCREEN -->
+    <div id="screen-main" class="screen">
         
-        <!-- Character Space -->
-        <div class="character-space">
-            <img id="pet-sprite" src="assets/character_idle.png" alt="Pet Character">
+        <!-- Top Status Frame -->
+        <div class="top-status-frame" style="background-image: url('assets/status bar.png');">
+            <div class="profile-info">
+                <span class="profile-name">TAMA Gotchu</span>
+            </div>
+            <div id="live-clock" class="live-clock">00:00</div>
+            
+            <!-- Health Bar -->
+            <div class="stat-group">
+                <img class="status-icon" src="assets/bread-icon.png"><span class="stat-label"></span>
+                <div class="pixel-bar-bg"><div id="health-bar-fill" class="pixel-bar-fill"></div></div>
+            </div>
+    
+            <!-- Love Bar -->
+            <div class="stat-group">
+                <img src="assets/heart-icon.png" class="status-icon"><span class="stat-label"></span>
+                <div class="pixel-bar-bg"><div id="love-bar-fill" class="pixel-bar-fill" style="background-color: #ff6b81;"></div></div>
+            </div>
         </div>
-        
-        <!-- Speech Bubble -->
-        <div id="speech-bubble" class="speech-bubble">Helo Jjul!💕</div>
-
-    </div>
-
-    <!-- Bottom Action Dock -->
-    <div class="bottom-action-dock">
-        <button id="btn-feed" class="dock-btn" title="Feed Bread">
-            <img src="assets/eat-btn.png" alt="Bread Icon">
-        </button>
-        <button id="btn-love" class="dock-btn" title="Send Love">
-            <img src="assets/love-btn.png" alt="Love Icon">
-        </button>
-        <a href="https://x.com/messages/compose?recipient_id=1349011095789428738&text=babyyyy🤸ketik-apa-aja-yh" target="_blank" rel="noopener noreferrer" id="btn-message" class="dock-btn" title="Open Twitter DM">
-            <span><img src="assets/dm-btn.png" alt="Message Icon"></span>
-        </a>
+    
+        <!-- Center Stage (Character & Speech Bubble) -->
+        <div class="center-stage">
+            
+            <!-- Character Space -->
+            <div class="character-space">
+                <img id="pet-sprite" src="assets/character_idle.png" alt="Pet Character">
+            </div>
+            
+            <!-- Speech Bubble -->
+            <div id="speech-bubble" class="speech-bubble">Helo Jjul!💕</div>
+    
+        </div>
+    
+        <!-- Bottom Action Dock -->
+        <div class="bottom-action-dock">
+            <button id="btn-feed" class="dock-btn" title="Feed Bread">
+                <img src="assets/eat-btn.png" alt="Bread Icon">
+            </button>
+            <button id="btn-love" class="dock-btn" title="Send Love">
+                <img src="assets/love-btn.png" alt="Love Icon">
+            </button>
+            <a href="https://x.com/messages/compose?recipient_id=1349011095789428738&text=babyyyy🤸ketik-apa-aja-yh" target="_blank" rel="noopener noreferrer" id="btn-message" class="dock-btn" title="Open Twitter DM">
+                <span><img src="assets/dm-btn.png" alt="Message Icon"></span>
+            </a>
+        </div>
     </div>
 </div>
+</body>
 
     <script src="script.js"></script>
 </body>
