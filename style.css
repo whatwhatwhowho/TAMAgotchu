@@ -15,6 +15,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100vh;
     height: 100vh;
     overflow: hidden;
     color: #333;
@@ -25,8 +26,8 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    width: 390px;
-    height: 778px;
+    width: 100vh;
+    height: 90vh;
     display: none;
     flex-direction: column;
     padding: 10px;
@@ -107,8 +108,8 @@ body {
     justify-content: space-between;
     background: url('assets/game-bg.png') no-repeat center center;
     background-size: cover;
-    width: 390px;
-    height: 774px;
+    width: 80vw;
+    height: 70vh;
     border: 3px solid #000;
     border-radius: 12px;
     position: center;
