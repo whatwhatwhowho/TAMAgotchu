@@ -55,7 +55,7 @@ body {
 }
 
 .launch-content a img {
-    max-width: 200px;
+    max-width: 312px;
     cursor: pointer;
     transition: transform 0.1s;
 }
