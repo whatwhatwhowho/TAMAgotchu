@@ -4,6 +4,7 @@ const gameState = {
     love: 80,
     isAlive: true
 };
+let isGameRunning = false;
 
 // --- DOM ELEMENTS ---
 const screenLaunch = document.getElementById('screen-launch');
@@ -30,6 +31,11 @@ btnPlay.addEventListener('click', (e) => {
     screenLaunch.classList.remove('active');
     screenMain.classList.add('active');
     startGameLoop();
+    
+    if (!isGameRunning) {
+        isGameRunning = true;
+        startGameLoop();
+    }
 });
 
 // 2. Click HOW TO PLAY image button to open the instructions overlay
