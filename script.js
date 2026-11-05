@@ -63,8 +63,8 @@ function startGameLoop() {
         if (!gameState.isAlive) return;
 
         // decrease health and love every 4 seconds
-        gameState.health = Math.max(0, gameState.health - 25);
-        gameState.love = Math.max(0, gameState.love - 25);
+        gameState.health = Math.max(0, gameState.health - 5);
+        gameState.love = Math.max(0, gameState.love - 5);
 
         if (gameState.health === 0 || gameState.love === 0) {
             gameState.isAlive = false;
@@ -130,20 +130,19 @@ btnFeed.addEventListener('click', () => {
     if (!gameState.isAlive) return;
     gameState.health = Math.min(100, gameState.health + 25);
     updateUI();
-    speechYammy("Nyam nyamumumum enyak 🍞✨");
-// Switch to Eating/Feeding asset
+    
+
     petSprite.src = "assets/character_eat.png";
-    triggerActionFeedback("Nyam nyamumumum enyak 🍞✨");
+    speechYammy("Nyam nyamumumum enyak 🍞✨");
 });
 
 btnLove.addEventListener('click', () => {
     if (!gameState.isAlive) return;
     gameState.love = Math.min(100, gameState.love + 25);
     updateUI();
-    speechYammy("lov yu mamas 💖🥰");
-// Switch to Love/Affection asset
+    
     petSprite.src = "assets/character_love.png";
-    triggerActionFeedback("lov yu mamas 💖🥰");
+    speechYammy("lov yu mamas 💖🥰");
 });
 
 function triggerActionFeedback(text) {
@@ -161,7 +160,10 @@ function triggerActionFeedback(text) {
 
 function speechYammy(text) {
     speechBubble.textContent = text;
+    isActionTriggered = true;
+    
     setTimeout(() => {
+        isActionTriggered = false;
         updateClockAndState(); // Revert back to time-based state speech
     }, 2500);
 }
